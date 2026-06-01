@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# =========================
+# HTTPS ZORUNLU (opsiyonel)
+# =========================
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# =========================
+# FRONT CONTROLLER
+# =========================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+# =========================
+# GÜVENLİK
+# =========================
+Options -Indexes
+
+# PHP dosyalarını direkt çalıştır
+<FilesMatch "\.php$">
+    Require all granted
+</FilesMatch>
+
+# =========================
+# HEADER TEMİZLİK (iframe vs hataları azaltır)
+# =========================
+<IfModule mod_headers.c>
+    Header always unset X-Frame-Options
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
