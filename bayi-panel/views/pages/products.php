@@ -57,7 +57,7 @@ $categories = Database::fetchAll(
 
 $totalPages = (int)ceil($total / $perPage);
 
-// Bildirim sayısı
+// Bildirim sayıları
 $unreadNotifCount = (int)Database::scalar(
     "SELECT COUNT(*) FROM notifications WHERE dealer_id = ? AND is_read = 0", [$dealerId]
 );
@@ -109,14 +109,6 @@ ob_start();
   </div>
 </div>
 
-<!-- İndirim Bilgisi -->
-<?php if ($discount > 0): ?>
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:13px;color:#15803d;display:flex;align-items:center;gap:8px">
-  🎁 <strong>Aktif İndiriminiz: %<?= number_format($discount * 100, 0) ?></strong>
-  — Aşağıdaki tüm ürünlerde bayi fiyatı otomatik uygulanmaktadır.
-</div>
-<?php endif; ?>
-
 <!-- Ürün Grid -->
 <?php if (empty($products)): ?>
   <div class="card" style="padding:60px;text-align:center;color:var(--text2)">
@@ -155,9 +147,6 @@ ob_start();
 
           <div class="price-row" style="margin-bottom:8px">
             <div>
-              <?php if ($discount > 0): ?>
-                <div class="price-normal">₺<?= number_format((float)$p['price'], 2, ',', '.') ?></div>
-              <?php endif; ?>
               <div class="price-dealer">₺<?= number_format($dealerPrice, 2, ',', '.') ?></div>
             </div>
             <div class="stock-info">
