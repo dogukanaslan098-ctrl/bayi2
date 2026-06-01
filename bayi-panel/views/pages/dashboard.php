@@ -58,13 +58,13 @@ ob_start();
     <div class="stat-sub">Onay / hazırlık bekleyen</div>
   </div>
 
-  <!-- Kart 4 -->
+  <!-- Kart 4 - SADECE FIYAT GÖSTERİLSİN -->
   <div class="stat-card">
     <div class="stat-header">
-      <div class="stat-icon icon-purple">🎁</div>
-      <div class="stat-label">Aktif İndirim</div>
+      <div class="stat-icon icon-purple">✅</div>
+      <div class="stat-label">Özel Fiyatlar</div>
     </div>
-    <div class="stat-value">%<?= number_format($discount * 100, 0) ?></div>
+    <div class="stat-value">Aktif</div>
     <div class="stat-sub">Tüm ürünlerde geçerli</div>
   </div>
 </div>
@@ -115,7 +115,7 @@ ob_start();
       <h3 class="card-title">Aylık Ciro Trendi</h3>
     </div>
     <div class="card-body">
-      <div class="chart-wrap" id="revenueChart" data-values='<?= json_encode(array_column($monthlyData, 'revenue')) ?>' data-labels='<?= json_encode(array_map(fn($r) => date('M', strtotime($r['month'] . '-01')), $monthlyData)) ?>'></div>
+      <div class="chart-wrap" id="revenueChart" data-values='<?= json_encode(array_column($monthlyData, 'revenue')) ?>' data-labels='<?= json_encode(array_map(fn($r) => date('M', strtotime($r['mo[...]
       <?php if (!empty($stats['monthly_revenue'])): ?>
         <div class="progress-section">
           <div class="progress-label">
